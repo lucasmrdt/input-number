@@ -27,6 +27,7 @@
     "assets/*.css"
   ],
   "scripts": {
+    "build": "npm run compile",
     "compile": "father build && lessc assets/index.less assets/index.css",
     "coverage": "rc-test --coverage",
     "docs:build": "dumi build",
