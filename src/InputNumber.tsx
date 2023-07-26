@@ -83,6 +83,7 @@ export interface InputNumberProps<T extends ValueType = ValueType>
   upHandler?: React.ReactNode;
   downHandler?: React.ReactNode;
   keyboard?: boolean;
+  allowControlsOnMobile?: boolean;
 
   /** Parse display value to validate number */
   parser?: (displayValue: string | undefined) => T;
@@ -122,6 +123,7 @@ const InternalInputNumber = React.forwardRef(
       downHandler,
       keyboard,
       controls = true,
+      allowControlsOnMobile = false,
 
       classNames,
       stringMode,
@@ -575,6 +577,7 @@ const InternalInputNumber = React.forwardRef(
             upDisabled={upDisabled}
             downDisabled={downDisabled}
             onStep={onInternalStep}
+            enabledForMobile={allowControlsOnMobile}
           />
         )}
         <div className={`${inputClassName}-wrap`}>

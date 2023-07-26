@@ -21,6 +21,7 @@ export interface StepHandlerProps {
   upDisabled?: boolean;
   downDisabled?: boolean;
   onStep: (up: boolean) => void;
+  enabledForMobile?: boolean;
 }
 
 export default function StepHandler({
@@ -30,6 +31,7 @@ export default function StepHandler({
   upDisabled,
   downDisabled,
   onStep,
+  enabledForMobile = false,
 }: StepHandlerProps) {
   // ======================== Step ========================
   const stepTimeoutRef = React.useRef<any>();
@@ -68,7 +70,7 @@ export default function StepHandler({
 
   // ======================= Render =======================
   const isMobile = useMobile();
-  if (isMobile) {
+  if (!enabledForMobile && isMobile) {
     return null;
   }
 
