@@ -3,7 +3,7 @@ import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
 import _typeof from "@babel/runtime/helpers/esm/typeof";
 import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
 import _objectWithoutProperties from "@babel/runtime/helpers/esm/objectWithoutProperties";
-var _excluded = ["prefixCls", "className", "style", "min", "max", "step", "defaultValue", "value", "disabled", "readOnly", "upHandler", "downHandler", "keyboard", "controls", "allowControlsOnMobile", "classNames", "stringMode", "parser", "formatter", "precision", "decimalSeparator", "onChange", "onInput", "onPressEnter", "onStep"],
+var _excluded = ["prefixCls", "className", "style", "min", "max", "step", "defaultValue", "value", "disabled", "readOnly", "upHandler", "downHandler", "keyboard", "controls", "allowControlsOnMobile", "classNames", "stringMode", "parser", "formatter", "precision", "decimalSeparator", "onChange", "onInput", "onPressEnter", "onStep", "focusOnUpDown"],
   _excluded2 = ["disabled", "style", "prefixCls", "value", "prefix", "suffix", "addonBefore", "addonAfter", "classes", "className", "classNames"];
 import getMiniDecimal, { getNumberPrecision, num2str, toFixed, validateNumber } from '@rc-component/mini-decimal';
 import clsx from 'classnames';
@@ -68,6 +68,8 @@ var InternalInputNumber = /*#__PURE__*/React.forwardRef(function (props, ref) {
     onInput = props.onInput,
     onPressEnter = props.onPressEnter,
     onStep = props.onStep,
+    _props$focusOnUpDown = props.focusOnUpDown,
+    focusOnUpDown = _props$focusOnUpDown === void 0 ? true : _props$focusOnUpDown,
     inputProps = _objectWithoutProperties(props, _excluded);
   var inputClassName = "".concat(prefixCls, "-input");
   var inputRef = React.useRef(null);
@@ -335,7 +337,6 @@ var InternalInputNumber = /*#__PURE__*/React.forwardRef(function (props, ref) {
 
   // ============================= Step =============================
   var onInternalStep = function onInternalStep(up) {
-    var _inputRef$current;
     // Ignore step since out of range
     if (up && upDisabled || !up && downDisabled) {
       return;
@@ -354,7 +355,10 @@ var InternalInputNumber = /*#__PURE__*/React.forwardRef(function (props, ref) {
       offset: shiftKeyRef.current ? getDecupleSteps(step) : step,
       type: up ? 'up' : 'down'
     });
-    (_inputRef$current = inputRef.current) === null || _inputRef$current === void 0 ? void 0 : _inputRef$current.focus();
+    if (focusOnUpDown) {
+      var _inputRef$current;
+      (_inputRef$current = inputRef.current) === null || _inputRef$current === void 0 ? void 0 : _inputRef$current.focus();
+    }
   };
 
   // ============================ Flush =============================

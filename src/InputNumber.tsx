@@ -100,7 +100,7 @@ export interface InputNumberProps<T extends ValueType = ValueType>
 
   onStep?: (value: T, info: { offset: ValueType; type: 'up' | 'down' }) => void;
 
-  // focusOnUpDown: boolean;
+  focusOnUpDown: boolean;
   // useTouch: boolean;
 
   // size?: ISize;
@@ -137,6 +137,8 @@ const InternalInputNumber = React.forwardRef(
       onInput,
       onPressEnter,
       onStep,
+
+      focusOnUpDown = true,
 
       ...inputProps
     } = props;
@@ -446,7 +448,9 @@ const InternalInputNumber = React.forwardRef(
         type: up ? 'up' : 'down',
       });
 
-      inputRef.current?.focus();
+      if (focusOnUpDown) {
+        inputRef.current?.focus();
+      }
     };
 
     // ============================ Flush =============================
