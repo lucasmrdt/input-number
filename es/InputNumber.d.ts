@@ -51,7 +51,7 @@ export interface InputNumberProps<T extends ValueType = ValueType> extends Omit<
         offset: ValueType;
         type: 'up' | 'down';
     }) => void;
-    focusOnUpDown: boolean;
+    focusOnUpDown?: boolean;
 }
 declare const InputNumber: (<T extends ValueType = ValueType>(props: InputNumberProps<T> & {
     children?: React.ReactNode;

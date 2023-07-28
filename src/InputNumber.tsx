@@ -100,7 +100,7 @@ export interface InputNumberProps<T extends ValueType = ValueType>
 
   onStep?: (value: T, info: { offset: ValueType; type: 'up' | 'down' }) => void;
 
-  focusOnUpDown: boolean;
+  focusOnUpDown?: boolean;
   // useTouch: boolean;
 
   // size?: ISize;
